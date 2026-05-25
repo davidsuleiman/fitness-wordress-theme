@@ -16,9 +16,8 @@
 <div class="site-shell">
 	<header class="site-header">
 		<div class="container header-inner">
-			<a class="site-branding" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<span class="site-title"><?php bloginfo( 'name' ); ?></span>
-				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
+			<a class="site-branding brand-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="<?php esc_attr_e( 'ReDefine & Co. home', 'redefine-co' ); ?>">
+				<span>ReDefine</span><span class="brand-amp">&amp;</span><span>Co</span>
 			</a>
 
 			<nav class="site-navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'redefine-co' ); ?>">

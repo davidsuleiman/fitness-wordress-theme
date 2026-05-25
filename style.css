@@ -18,11 +18,11 @@ Tags: blog, custom-menu, featured-images, fitness, wellness, one-column, two-col
   --ink: #141512;
   --muted: #686c63;
   --line: #dfe4d8;
-  --paper: #f8faf4;
+  --paper: #fbf9f1;
   --panel: #ffffff;
-  --accent: #24745a;
+  --accent: #8a9a5b;
   --accent-2: #e75f3d;
-  --accent-soft: #e9f4ed;
+  --accent-soft: #eef2df;
   --charcoal: #222722;
   --max: 1180px;
   --radius: 8px;
@@ -69,8 +69,8 @@ img {
 }
 
 .site-header {
-  border-bottom: 1px solid var(--line);
-  background: rgba(248, 250, 244, 0.94);
+  border-bottom: 1px solid rgba(20, 21, 18, 0.12);
+  background: rgba(251, 249, 241, 0.9);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -78,7 +78,7 @@ img {
 }
 
 .header-inner {
-  min-height: 76px;
+  min-height: 88px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -86,28 +86,28 @@ img {
 }
 
 .site-branding {
-  display: grid;
-  gap: 2px;
+  color: var(--ink);
 }
 
-.site-title {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.55rem, 3vw, 2.1rem);
-  font-weight: 700;
+.brand-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: 900;
+  letter-spacing: 0;
   line-height: 1;
 }
 
-.site-description {
-  color: var(--muted);
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.brand-logo .brand-amp {
+  color: var(--accent);
+  font-weight: 300;
 }
 
 .primary-menu {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -118,18 +118,20 @@ img {
 .primary-menu a {
   display: inline-flex;
   align-items: center;
-  min-height: 38px;
-  padding: 0 12px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid transparent;
   border-radius: 999px;
   color: var(--charcoal);
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-size: 0.88rem;
+  font-weight: 900;
 }
 
 .primary-menu a:hover,
 .primary-menu .current-menu-item > a {
-  background: var(--accent-soft);
-  color: var(--accent);
+  border-color: var(--ink);
+  background: transparent;
+  color: var(--ink);
 }
 
 .button,
@@ -480,27 +482,94 @@ form.contact-card {
 
 .site-footer {
   margin-top: auto;
-  padding: 34px 0;
-  background: var(--ink);
-  color: #fff;
+  padding: clamp(44px, 7vw, 72px) 0;
+  border-top: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .footer-inner {
   display: flex;
   justify-content: space-between;
-  gap: 24px;
-  align-items: center;
+  gap: 40px;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
-.footer-menu {
+.footer-brand {
+  width: min(100%, 420px);
+}
+
+.footer-logo {
+  margin-bottom: 20px;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.footer-brand p {
+  max-width: 360px;
+  margin: 0 0 20px;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.footer-subscribe {
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  width: min(100%, 360px);
+}
+
+.footer-subscribe input {
+  min-height: 46px;
+  border: 1px solid var(--ink);
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+  background: transparent;
+  font-size: 0.86rem;
+}
+
+.footer-subscribe button {
+  width: 64px;
+  min-height: 46px;
+  border: 1px solid var(--ink);
+  border-radius: 0 999px 999px 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.3rem;
+  padding: 0;
+}
+
+.footer-subscribe button:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.footer-brand .copyright {
+  margin-top: 24px;
+  color: #777;
+  font-size: 0.72rem;
+}
+
+.footer-link-groups {
+  display: flex;
+  gap: clamp(36px, 7vw, 80px);
+  align-items: flex-start;
+}
+
+.footer-menu {
   padding: 0;
   margin: 0;
   list-style: none;
-  color: #d8ded1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #555;
+  font-size: 0.92rem;
+}
+
+.footer-menu-main {
+  gap: 15px;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 .screen-reader-text {
@@ -545,6 +614,11 @@ form.contact-card {
   .newsletter-form {
     flex-direction: column;
   }
+
+  .footer-link-groups {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 520px) {
@@ -558,7 +632,9 @@ form.contact-card {
   }
 
   .stat-row,
-  .platform-links {
+  .platform-links,
+  .footer-link-groups {
     grid-template-columns: 1fr;
+    display: grid;
   }
 }
