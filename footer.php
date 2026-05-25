@@ -11,13 +11,13 @@
 		<div class="container footer-inner">
 			<div class="footer-brand">
 				<a class="brand-logo footer-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="<?php esc_attr_e( 'ReDefine & Co. home', 'redefine-co' ); ?>">
-					<span>ReDefine</span><span class="brand-amp">&amp;</span><span>Co</span>
+					<span>ReDefine</span><span class="brand-slash">/</span><span>Co</span>
 				</a>
 				<p><?php esc_html_e( 'Subscribe to get the most important developments in fitness and wellness.', 'redefine-co' ); ?></p>
 				<form class="footer-subscribe" action="#" method="post">
 					<label class="screen-reader-text" for="footer-email"><?php esc_html_e( 'Email address', 'redefine-co' ); ?></label>
 					<input id="footer-email" type="email" name="email" placeholder="<?php esc_attr_e( 'Enter your email address to subscribe...', 'redefine-co' ); ?>">
-					<button type="submit" aria-label="<?php esc_attr_e( 'Subscribe', 'redefine-co' ); ?>">&rarr;</button>
+					<button type="submit" aria-label="<?php esc_attr_e( 'Subscribe', 'redefine-co' ); ?>"><span aria-hidden="true"></span></button>
 				</form>
 				<p class="copyright">
 					<?php

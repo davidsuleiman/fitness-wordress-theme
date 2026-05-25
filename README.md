@@ -9,7 +9,7 @@ ReDefine & Co. is a three-page fitness blog theme inspired by the editorial stru
 3. Create two pages:
    - **Products** using the **Products Page** template.
    - **Contact** using the **Contact Us Page** template.
-4. Go to **Appearance > Menus** and add Blog, Products, and Contact to the Primary Menu.
+4. Go to **Appearance > Menus** and add Articles, Products, and Contact Us to the Primary Menu.
 5. Optional: set your site title and tagline under **Settings > General**.
 
 ## Files

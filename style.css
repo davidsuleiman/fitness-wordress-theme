@@ -69,8 +69,9 @@ img {
 }
 
 .site-header {
-  border-bottom: 1px solid rgba(20, 21, 18, 0.12);
-  background: rgba(251, 249, 241, 0.9);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: rgba(251, 249, 241, 0.96);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -78,11 +79,12 @@ img {
 }
 
 .header-inner {
-  min-height: 88px;
-  display: flex;
+  min-height: 96px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: clamp(20px, 4vw, 56px);
+  position: relative;
 }
 
 .site-branding {
@@ -92,46 +94,125 @@ img {
 .brand-logo {
   display: inline-flex;
   align-items: baseline;
-  gap: 7px;
-  font-size: clamp(1.75rem, 3vw, 2.35rem);
-  font-weight: 900;
+  gap: 0;
+  color: #282828;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 500;
   letter-spacing: 0;
   line-height: 1;
+  white-space: nowrap;
 }
 
-.brand-logo .brand-amp {
-  color: var(--accent);
-  font-weight: 300;
+.brand-logo .brand-slash {
+  color: #d8f36d;
+  font-weight: 800;
+  padding-inline: 4px;
 }
 
 .primary-menu {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(22px, 3vw, 44px);
   margin: 0;
   padding: 0;
   list-style: none;
-  flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .primary-menu a {
   display: inline-flex;
   align-items: center;
-  min-height: 42px;
-  padding: 0 16px;
+  min-height: 40px;
+  padding: 0;
   border: 1px solid transparent;
-  border-radius: 999px;
-  color: var(--charcoal);
-  font-size: 0.88rem;
+  color: #000;
+  font-size: clamp(1rem, 1.3vw, 1.28rem);
   font-weight: 900;
 }
 
 .primary-menu a:hover,
 .primary-menu .current-menu-item > a {
-  border-color: var(--ink);
+  border-color: transparent;
   background: transparent;
   color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.subscribe-pill {
+  display: inline-flex;
+  min-height: 50px;
+  min-width: 164px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 999px;
+  background: #dcf56f;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.subscribe-pill:hover,
+.subscribe-pill:focus {
+  background: #000;
+  color: #fff;
+}
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 34px;
+  min-height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #000;
+  position: relative;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  border: 0;
+  background: transparent;
+  color: #000;
+}
+
+.menu-toggle span:not(.screen-reader-text) {
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: currentColor;
+  position: absolute;
+  left: 3px;
+  transition: transform 160ms ease, top 160ms ease;
+}
+
+.menu-toggle span:nth-child(2) {
+  top: 11px;
+}
+
+.menu-toggle span:nth-child(3) {
+  top: 22px;
+}
+
+.site-header.is-menu-open .menu-toggle span:nth-child(2) {
+  top: 16px;
+  transform: rotate(42deg);
+}
+
+.site-header.is-menu-open .menu-toggle span:nth-child(3) {
+  top: 16px;
+  transform: rotate(-42deg);
 }
 
 .button,
@@ -482,59 +563,63 @@ form.contact-card {
 
 .site-footer {
   margin-top: auto;
-  padding: clamp(44px, 7vw, 72px) 0;
+  padding: clamp(46px, 7vw, 80px) 0 28px;
   border-top: 1px solid var(--ink);
   background: var(--paper);
   color: var(--ink);
 }
 
 .footer-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.95fr) minmax(320px, 0.72fr);
+  gap: clamp(40px, 8vw, 120px);
+  align-items: start;
 }
 
 .footer-brand {
-  width: min(100%, 420px);
+  width: min(100%, 660px);
 }
 
 .footer-logo {
-  margin-bottom: 20px;
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: clamp(56px, 8vw, 84px);
+  font-size: clamp(3.8rem, 7vw, 6.1rem);
+  font-weight: 500;
 }
 
 .footer-brand p {
-  max-width: 360px;
-  margin: 0 0 20px;
-  color: #333;
-  font-size: 0.95rem;
+  max-width: 680px;
+  margin: 0 0 18px;
+  color: #000;
+  font-size: clamp(1rem, 1.4vw, 1.22rem);
 }
 
 .footer-subscribe {
   display: flex;
-  width: min(100%, 360px);
+  width: min(100%, 586px);
+  margin-top: 18px;
 }
 
 .footer-subscribe input {
-  min-height: 46px;
+  min-height: 56px;
   border: 1px solid var(--ink);
   border-right: 0;
   border-radius: 999px 0 0 999px;
   background: transparent;
-  font-size: 0.86rem;
+  color: #000;
+  font-size: 1rem;
+  padding-left: 32px;
 }
 
 .footer-subscribe button {
-  width: 64px;
-  min-height: 46px;
+  width: 88px;
+  min-height: 56px;
   border: 1px solid var(--ink);
+  border-left: 0;
   border-radius: 0 999px 999px 0;
   background: transparent;
   color: var(--ink);
-  font-size: 1.3rem;
   padding: 0;
+  position: relative;
 }
 
 .footer-subscribe button:hover {
@@ -542,16 +627,48 @@ form.contact-card {
   color: #fff;
 }
 
+.footer-subscribe button span {
+  display: block;
+  width: 44px;
+  height: 18px;
+  position: relative;
+}
+
+.footer-subscribe button span::before {
+  content: "";
+  width: 44px;
+  height: 2px;
+  background: currentColor;
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+.footer-subscribe button span::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  position: absolute;
+  right: 0;
+  top: 1px;
+  transform: rotate(45deg);
+}
+
 .footer-brand .copyright {
   margin-top: 24px;
-  color: #777;
-  font-size: 0.72rem;
+  color: #000;
+  font-size: 0.75rem;
 }
 
 .footer-link-groups {
-  display: flex;
-  gap: clamp(36px, 7vw, 80px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
   align-items: flex-start;
+  padding-left: clamp(24px, 4vw, 56px);
+  border-left: 1px solid var(--line);
 }
 
 .footer-menu {
@@ -562,14 +679,23 @@ form.contact-card {
   flex-direction: column;
   gap: 12px;
   color: #555;
-  font-size: 0.92rem;
+  font-size: 1rem;
 }
 
 .footer-menu-main {
-  gap: 15px;
+  gap: 0;
   color: var(--ink);
-  font-size: 1rem;
+  font-size: clamp(1.1rem, 1.55vw, 1.35rem);
   font-weight: 900;
+}
+
+.footer-menu-main li {
+  border-bottom: 1px solid var(--line);
+}
+
+.footer-menu-main a {
+  display: block;
+  padding: 4px 0 12px;
 }
 
 .screen-reader-text {
@@ -585,14 +711,65 @@ form.contact-card {
 }
 
 @media (max-width: 860px) {
-  .header-inner,
-  .footer-inner {
-    align-items: flex-start;
-    flex-direction: column;
+  .header-inner {
+    min-height: 78px;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+  }
+
+  .brand-logo {
+    font-size: clamp(1.65rem, 7vw, 2.25rem);
+  }
+
+  .header-actions {
+    gap: 14px;
+  }
+
+  .subscribe-pill {
+    min-width: auto;
+    min-height: 42px;
+    padding: 0 18px;
+    font-size: 0.92rem;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-navigation {
+    display: none;
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 18px 0 26px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .site-header.is-menu-open .site-navigation {
+    display: block;
   }
 
   .primary-menu {
-    justify-content: flex-start;
+    display: grid;
+    gap: 0;
+  }
+
+  .primary-menu li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .primary-menu a {
+    min-height: 58px;
+    justify-content: space-between;
+    font-size: 1.32rem;
+  }
+
+  .primary-menu a::after {
+    content: "";
+    width: 24px;
+    height: 10px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: skewX(-28deg);
   }
 
   .hero-grid,
@@ -615,9 +792,20 @@ form.contact-card {
     flex-direction: column;
   }
 
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-logo {
+    margin-bottom: 42px;
+    font-size: clamp(3.2rem, 14vw, 4.8rem);
+  }
+
   .footer-link-groups {
     width: 100%;
-    justify-content: space-between;
+    padding-left: 0;
+    border-left: 0;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -629,6 +817,28 @@ form.contact-card {
   .hero h1,
   .page-hero h1 {
     font-size: clamp(2.7rem, 17vw, 4.4rem);
+  }
+
+  .header-inner {
+    min-height: 72px;
+  }
+
+  .subscribe-pill {
+    display: none;
+  }
+
+  .footer-subscribe {
+    width: 100%;
+  }
+
+  .footer-subscribe input {
+    min-width: 0;
+    padding-left: 18px;
+    font-size: 0.86rem;
+  }
+
+  .footer-subscribe button {
+    width: 68px;
   }
 
   .stat-row,
