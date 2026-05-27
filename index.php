@@ -31,15 +31,24 @@ get_header();
 	<div class="container">
 		<div class="section-head">
 			<h2 class="section-title"><?php esc_html_e( 'Latest Articles', 'redefine-co' ); ?></h2>
-			<a class="view-link" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/' ) ); ?>"><?php esc_html_e( 'View all', 'redefine-co' ); ?></a>
+			<a class="view-link" href="<?php echo esc_url( home_url( '/blog/' ) ); ?>"><?php esc_html_e( 'View all', 'redefine-co' ); ?></a>
 		</div>
 
 		<div class="post-grid">
 			<?php if ( have_posts() ) : ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 					<article <?php post_class( 'post-card' ); ?>>
-						<time class="post-date" datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>
+						<?php if ( has_post_thumbnail() ) : ?>
+							<div class="featured-image">
+								<?php the_post_thumbnail( 'medium', array( 'alt' => get_the_title() ) ); ?>
+							</div>
+						<?php else : ?>
+							<div class="featured-image" style="background: linear-gradient(135deg, #c8f03a 0%, #a8cb2a 100%); display: flex; align-items: center; justify-content: center; color: var(--ink); font-weight: 700; font-size: 2.5rem;">
+								<?php echo esc_html( substr( get_the_title(), 0, 1 ) ); ?>
+							</div>
+						<?php endif; ?>
 						<div>
+							<time class="post-date" datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<p><?php echo esc_html( redefine_co_excerpt() ); ?></p>
 						</div>
@@ -49,15 +58,18 @@ get_header();
 			<?php else : ?>
 				<?php
 				$sample_posts = array(
-					array( 'date' => 'May 25, 2026', 'title' => 'The New Rules of Strength Training', 'summary' => 'How hybrid routines, recovery data, and better coaching are changing the weekly split.', 'cat' => 'Training' ),
-					array( 'date' => 'May 24, 2026', 'title' => 'Recovery Tech Gets More Personal', 'summary' => 'Wearables are moving from passive dashboards into practical suggestions athletes can use.', 'cat' => 'Recovery' ),
-					array( 'date' => 'May 23, 2026', 'title' => 'What Boutique Studios Are Learning From Clubs', 'summary' => 'Community, pricing, and programming shifts are redrawing the fitness membership map.', 'cat' => 'Business' ),
+					array( 'date' => 'May 25, 2026', 'title' => 'The New Rules of Strength Training', 'summary' => 'How hybrid routines, recovery data, and better coaching are changing the weekly split.', 'cat' => 'Training', 'letter' => 'T' ),
+					array( 'date' => 'May 24, 2026', 'title' => 'Recovery Tech Gets More Personal', 'summary' => 'Wearables are moving from passive dashboards into practical suggestions athletes can use.', 'cat' => 'Recovery', 'letter' => 'R' ),
+					array( 'date' => 'May 23, 2026', 'title' => 'What Boutique Studios Are Learning From Clubs', 'summary' => 'Community, pricing, and programming shifts are redrawing the fitness membership map.', 'cat' => 'Business', 'letter' => 'W' ),
 				);
 				?>
 				<?php foreach ( $sample_posts as $sample_post ) : ?>
 					<article class="post-card">
-						<time class="post-date"><?php echo esc_html( $sample_post['date'] ); ?></time>
+						<div class="featured-image" style="background: linear-gradient(135deg, #c8f03a 0%, #a8cb2a 100%); display: flex; align-items: center; justify-content: center; color: var(--ink); font-weight: 700; font-size: 2.5rem;">
+							<?php echo esc_html( $sample_post['letter'] ); ?>
+						</div>
 						<div>
+							<time class="post-date"><?php echo esc_html( $sample_post['date'] ); ?></time>
 							<h3><?php echo esc_html( $sample_post['title'] ); ?></h3>
 							<p><?php echo esc_html( $sample_post['summary'] ); ?></p>
 						</div>
